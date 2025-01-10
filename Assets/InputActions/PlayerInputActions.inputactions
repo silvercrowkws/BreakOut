@@ -1,0 +1,101 @@
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "Move",
+            "id": "2d01f56e-2978-4c75-bc95-7eb652dc551d",
+            "actions": [
+                {
+                    "name": "MoveAction",
+                    "type": "Value",
+                    "id": "53f0d65b-eb48-428b-944b-676f7bad3bc2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "5e85caec-d244-4897-8e30-19ddda689941",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveAction",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "bee4580d-8012-4319-98cc-1ea3b82c8615",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveAction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "49221c2e-84da-4fa7-9300-4ef05aa79966",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveAction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "StartBall",
+            "id": "6fba4625-025a-4506-869c-5d046823fb77",
+            "actions": [
+                {
+                    "name": "Space",
+                    "type": "Button",
+                    "id": "5f5c720f-42b2-45b2-8300-2c8e13606e7d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1fc0ba64-4867-453c-a58a-334872cd1233",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KM",
+                    "action": "Space",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "KM",
+            "bindingGroup": "KM",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
