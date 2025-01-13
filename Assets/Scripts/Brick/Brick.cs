@@ -9,7 +9,7 @@ public class Brick : MonoBehaviour
     /// <summary>
     /// 모든 Ball의 배열
     /// </summary>
-    Ball[] balls;
+    private List<Ball> balls = new List<Ball>();
 
     /// <summary>
     /// 공 클래스
@@ -33,13 +33,33 @@ public class Brick : MonoBehaviour
 
     private void Start()
     {
+        //increaseBall = ItemPrefabs.GetComponent<IncreaseBall>();
+        //increaseBall.onBallIncrease += OnBallIncrease;
+
+        // IncreaseBall 객체를 찾고 onBallIncrease 이벤트에 메서드 등록
+        //increaseBall = FindObjectOfType<IncreaseBall>();
         increaseBall = ItemPrefabs.GetComponent<IncreaseBall>();
-        increaseBall.onBallIncrease += OnBallIncrease;
+        if (increaseBall != null)
+        {
+            increaseBall.onBallIncrease += OnBallIncrease;
+            Debug.Log("찾음");
+        }
+        else
+        {
+            Debug.LogError("IncreaseBall 객체를 찾을 수 없습니다.");
+        }
 
-        // 모든 Ball 객체를 배열로 가져오기
-        balls = FindObjectsOfType<Ball>();
+        InitializeBalls();
+    }
 
-        // 배열 출력
+    /// <summary>
+    /// 모든 Ball 객체 초기화
+    /// </summary>
+    private void InitializeBalls()
+    {
+        balls.Clear(); // 기존 리스트를 비우고
+        balls.AddRange(FindObjectsOfType<Ball>()); // 새로운 Ball 객체들을 추가
+
         foreach (var ball in balls)
         {
             Debug.Log($"찾은 공: {ball.name}");
@@ -50,17 +70,9 @@ public class Brick : MonoBehaviour
     /// <summary>
     /// 아이템 충돌로 생성된 공을 찾는 함수
     /// </summary>
-    private void OnBallIncrease()
+    public void OnBallIncrease()
     {
-        // 모든 Ball 객체를 배열로 가져오기
-        balls = FindObjectsOfType<Ball>();
-
-        // 배열 출력
-        foreach (var ball in balls)
-        {
-            Debug.Log($"찾은 공: {ball.name}");
-            ball.onBrickDestroy += OnBrickDestroy;
-        }
+        InitializeBalls();
     }
 
     /// <summary>
@@ -70,7 +82,7 @@ public class Brick : MonoBehaviour
     private void OnBrickDestroy(GameObject brickChild)
     {
         // 10% 확률로 파괴되는 자식의 위치에 아이템 생성
-        if (UnityEngine.Random.Range(0f, 1f) < 0.9f)
+        if (UnityEngine.Random.Range(0f, 1f) < 0.1f)
         {
             Debug.Log("아이템 생성");
             //Instantiate(ItemPrefabs, brickChild.transform);

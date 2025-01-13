@@ -37,9 +37,15 @@ public class IncreaseBall : MonoBehaviour
     /// </summary>
     public GameObject ballPrefabs;
 
+    /// <summary>
+    /// 벽돌 클래스
+    /// </summary>
+    Brick brick;
+
     private void Start()
     {
         player = FindAnyObjectByType<Player>();
+        brick = FindAnyObjectByType<Brick>();
     }
 
     private void Update()
@@ -70,7 +76,8 @@ public class IncreaseBall : MonoBehaviour
                 Instantiate(ballPrefabs, new Vector3(player.transform.position.x, -3.9f, 0f), Quaternion.identity);
 
                 // 공을 하나 늘리고 벽돌에게 공을 찾게 하는 함수
-                onBallIncrease?.Invoke();
+                //onBallIncrease?.Invoke();
+                brick.OnBallIncrease();
 
                 // 자신을 파괴
                 Destroy(gameObject);
